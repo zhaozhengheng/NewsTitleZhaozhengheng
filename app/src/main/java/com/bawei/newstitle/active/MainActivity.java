@@ -9,6 +9,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bawei.newstitle.R;
@@ -22,8 +24,11 @@ import org.w3c.dom.Text;
 public class MainActivity extends FragmentActivity implements View.OnClickListener {
 
 
-    private TextView[] arr;
-
+    private LinearLayout[] arr;
+    private TextView[] arr1;
+    private ImageView[] arr2;
+   int[] im=new int[]{R.mipmap.shou,R.mipmap.guanzhu,R.mipmap.vip,R.mipmap.wode};
+    int[] im1=new int[]{R.mipmap.shou1,R.mipmap.guanzhu1,R.mipmap.vip1,R.mipmap.wode1};
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
@@ -46,19 +51,19 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     {
    switch (view.getId())
    {
-       case R.id.TextView_home:
+       case R.id.LinearLayout_home:
            replace(new Home());
            color(0);
            break;
-       case R.id.TextView_attention:
+       case R.id.LinearLayout_attention:
            replace(new Attention());
            color(1);
            break;
-       case R.id.TextView_vip:
+       case R.id.LinearLayout_vip:
            replace(new Vip());
            color(2);
            break;
-       case R.id.TextView_my:
+       case R.id.LinearLayout_my:
            replace(new My());
            color(3);
            break;
@@ -66,27 +71,39 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     }
     public void control()
     {
-        TextView home = (TextView) findViewById(R.id.TextView_home);
-        TextView attenton = (TextView) findViewById(R.id.TextView_attention);
-        TextView vip = (TextView) findViewById(R.id.TextView_vip);
-        TextView my = (TextView) findViewById(R.id.TextView_my);
+        LinearLayout home = (LinearLayout) findViewById(R.id.LinearLayout_home);
+        LinearLayout attenton = (LinearLayout) findViewById(R.id.LinearLayout_attention);
+        LinearLayout vip = (LinearLayout) findViewById(R.id.LinearLayout_vip);
+        LinearLayout my = (LinearLayout) findViewById(R.id.LinearLayout_my);
+        TextView home1= (TextView) findViewById(R.id.TextView_home);
+        TextView attenton1= (TextView) findViewById(R.id.TextView_attention);
+        TextView vip1= (TextView) findViewById(R.id.TextView_vip);
+        TextView my1= (TextView) findViewById(R.id.TextView_my);
+        arr1 = new TextView[]{home1,attenton1,vip1,my1};
+        ImageView shou= (ImageView) findViewById(R.id.ImageView_shou);
+        ImageView attention= (ImageView) findViewById(R.id.ImageView_attention);
+        ImageView vip2= (ImageView) findViewById(R.id.ImageView_vip);
+        ImageView my2= (ImageView) findViewById(R.id.ImageView_my);
+        arr2 = new ImageView[]{shou,attention,vip2,my2};
         home.setOnClickListener(this);
         attenton.setOnClickListener(this);
         vip.setOnClickListener(this);
         my.setOnClickListener(this);
-        arr = new TextView[]{home,attenton,vip,my};
+        arr = new LinearLayout[]{home,attenton,vip,my};
     }
     public void color(int position)
     {
         for(int i=0;i<arr.length;i++)
         {
-            if(i==position)
-            {
-                arr[i].setTextColor(Color.RED);
-            }else
-            {
-                arr[i].setTextColor(Color.BLUE);
-            }
+           if(position==i)
+           {
+               arr1[i].setTextColor(Color.RED);
+               arr2[i].setImageResource(im1[i]);
+           }else
+           {
+               arr1[i].setTextColor(Color.BLUE);
+               arr2[i].setImageResource(im[i]);
+           }
         }
     }
 

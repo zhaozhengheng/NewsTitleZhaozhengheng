@@ -1,8 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#ff00"
-    >
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/LinearLayout_tou"
+        android:orientation="horizontal"
+        android:background="#ff00"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="新闻头条"
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="center"
+            android:textSize="25sp"/>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="30sp"
+    android:orientation="horizontal"
+    android:layout_gravity="center"
+    android:background="@drawable/aa">
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/souxu"
+        android:layout_gravity="center"
+        android:layout_marginLeft="10dp"
+        />
+<EditText
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:hint="搜你想搜的"
+    android:background="@null"/>
+
+</LinearLayout>
+    </LinearLayout>
+
+
+
+
+    <android.support.design.widget.TabLayout
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:id="@+id/TabLayout"
+
+        app:tabSelectedTextColor="#ff00"
+
+        >
+
+    </android.support.design.widget.TabLayout>
+    <android.support.v4.view.ViewPager
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/ViewPager"></android.support.v4.view.ViewPager>
 
 </LinearLayout>

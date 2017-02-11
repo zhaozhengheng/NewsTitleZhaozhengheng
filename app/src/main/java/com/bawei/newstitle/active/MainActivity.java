@@ -21,13 +21,10 @@ import com.bawei.newstitle.frament.Vip;
 
 import org.w3c.dom.Text;
 
-public class MainActivity extends FragmentActivity implements View.OnClickListener {
-
-
-    private LinearLayout[] arr;
+public class MainActivity extends FragmentActivity implements View.OnClickListener {private LinearLayout[] arr;
     private TextView[] arr1;
     private ImageView[] arr2;
-   int[] im=new int[]{R.mipmap.shou,R.mipmap.guanzhu,R.mipmap.vip,R.mipmap.wode};
+    int[] im=new int[]{R.mipmap.shou,R.mipmap.guanzhu,R.mipmap.vip,R.mipmap.wode};
     int[] im1=new int[]{R.mipmap.shou1,R.mipmap.guanzhu1,R.mipmap.vip1,R.mipmap.wode1};
     protected void onCreate(Bundle savedInstanceState)
     {

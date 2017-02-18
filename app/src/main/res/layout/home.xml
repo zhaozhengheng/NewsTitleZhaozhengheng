@@ -15,6 +15,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="新闻头条"
+            android:textStyle="bold"
+            android:textColor="#fff"
             android:layout_marginLeft="10dp"
             android:layout_gravity="center"
             android:textSize="25sp"/>

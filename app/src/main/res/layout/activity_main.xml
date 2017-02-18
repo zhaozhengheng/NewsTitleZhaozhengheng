@@ -45,7 +45,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="关注"
+                android:text="话题"
 
                 android:id="@+id/TextView_attention"
               />
@@ -66,7 +66,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="vip"
+                android:text="视频"
                 android:id="@+id/TextView_vip"
 
               />

@@ -1,5 +1,6 @@
 package com.bawei.newstitle.frament;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.bawei.newstitle.R;
+import com.bawei.newstitle.bean.PublicClass;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +25,12 @@ import java.util.List;
 public class Home extends Fragment
 {
 
-    String[] arr=new String[]{"推荐", "热点", "阳光", "体育", "北京", "社会", "娱乐", "财经"};
+    String[] arr=new String[]{ "足球", "娱乐", "体育", "财经", "科技",
+            "电影", "汽车", "笑话", "游戏", "时尚",
+            "情感", "精选", "电台", "NBA", "数码",
+            "移动", "彩票", "教育", "论坛", "旅游",
+            "手机", "博客", "社会", "家居", "暴雪游戏",
+            "亲子", "CBA", "消息", "军事"};
     private List<Fragment> list;
     private ViewPager ve;
 
@@ -44,12 +51,14 @@ private void apdater()
     ve.setAdapter(new FragmentPagerAdapter(getActivity().getSupportFragmentManager())
        {
         @Override
-        public Fragment getItem(int position) {
+        public Fragment getItem(int position)
+        {
             return list.get(position);
         }
 
         @Override
-        public int getCount() {
+        public int getCount()
+        {
             return arr.length;
         }
 
@@ -67,6 +76,9 @@ private void apdater()
         for(int i=0;i<arr.length;i++)
         {
             Title te=new Title();
+            Bundle bb=new Bundle();
+            bb.putString("name", PublicClass.home_Titles_ID[i]);
+            te.setArguments(bb);
             list.add(te);
         }
     }

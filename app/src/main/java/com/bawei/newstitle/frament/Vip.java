@@ -2,21 +2,75 @@ package com.bawei.newstitle.frament;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.bawei.newstitle.R;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by 1 on 2017/2/10.
  */
 public class Vip extends Fragment
 {
-    @Nullable
-    @Override
+
+    private View vv;
+    private TabLayout shipin_tt;
+    private ViewPager shipin_viewpage;
+   List<Fragment> list=new ArrayList<Fragment>();
+    String[] arr=new String[]{"生活","频道","花样","关注","风格","条目"};
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.vip,null);
+
+        vv = inflater.inflate(R.layout.vip,null);
+        initView();
+        initDate();
+        addfragmet();
+        shipin_tt.setTabMode(TabLayout.MODE_SCROLLABLE);
+        shipin_tt.setupWithViewPager(shipin_viewpage);
+
+        return vv;
+    }
+
+    private void initView()
+    {
+        shipin_tt = (TabLayout) vv.findViewById(R.id.TabLayout_shipin);
+        shipin_viewpage = (ViewPager) vv.findViewById(R.id.ViewPager_shipin);
+    }
+
+    private void initDate()
+    {
+        shipin_viewpage.setAdapter(new FragmentPagerAdapter(getActivity().getSupportFragmentManager()) {
+            @Override
+            public Fragment getItem(int position)
+            {
+                return list.get(position);
+            }
+
+            @Override
+            public int getCount() {
+                return arr.length;
+            }
+
+            @Override
+            public CharSequence getPageTitle(int position) {
+                return arr[position];
+            }
+        });
+    }
+    public void addfragmet()
+    {
+        for(int i=0;i<arr.length;i++)
+        {
+            Shipin tt=new Shipin();
+            list.add(tt);
+
+        }
     }
 }

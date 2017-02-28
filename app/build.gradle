@@ -26,4 +26,7 @@ dependencies {
     compile 'com.android.support:design:23.4.0'
     compile 'org.xutils:xutils:3.3.40'
     compile files('libs/universal-image-loader-1.9.3-with-sources.jar')
+    compile project(':library')
+    compile 'fm.jiecao:jiecaovideoplayer:2.0'
+    compile files('libs/mta-sdk-1.6.2.jar')
 }

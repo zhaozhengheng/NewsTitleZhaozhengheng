@@ -10,12 +10,14 @@ public class ImageTitleBean
     private String title;
     private String source;
     private String imgsrc;
+    private String uri;
     private List<ImageBean> imgextra;
 
-    public ImageTitleBean(String title, String source, String imgsrc, List<ImageBean> imgextra) {
+    public ImageTitleBean(String title, String source, String imgsrc, String uri, List<ImageBean> imgextra) {
         this.title = title;
         this.source = source;
         this.imgsrc = imgsrc;
+        this.uri = uri;
         this.imgextra = imgextra;
     }
 
@@ -47,6 +49,14 @@ public class ImageTitleBean
         this.imgsrc = imgsrc;
     }
 
+    public String getUri() {
+        return uri;
+    }
+
+    public void setUri(String uri) {
+        this.uri = uri;
+    }
+
     public List<ImageBean> getImgextra() {
         return imgextra;
     }
@@ -61,6 +71,7 @@ public class ImageTitleBean
                 "title='" + title + '\'' +
                 ", source='" + source + '\'' +
                 ", imgsrc='" + imgsrc + '\'' +
+                ", uri='" + uri + '\'' +
                 ", imgextra=" + imgextra +
                 '}';
     }

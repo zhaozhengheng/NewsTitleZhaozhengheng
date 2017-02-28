@@ -1,5 +1,6 @@
 package com.bawei.newstitle.frament;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -7,15 +8,19 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.bawei.newstitle.R;
+import com.bawei.newstitle.active.Main2Activity;
 import com.bawei.newstitle.bean.ImageBean;
 import com.bawei.newstitle.bean.ImageTitleBean;
 import com.bawei.newstitle.bean.PublicClass;
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -32,25 +37,29 @@ import java.util.List;
 /**
  * Created by 1 on 2017/2/11.
  */
-public class Title extends Fragment {
+public class Title extends Fragment  implements PullToRefreshListView.OnRefreshListener2<ListView>
+{
 
-    private ListView home;
+    private PullToRefreshListView home;
     private String uri;
     private String name;
     private int age = 0;
     private List<ImageBean> list;
     private List<ImageTitleBean> listtitle;
     private DisplayImageOptions dd;
+    private BaseAdapter bb;
 
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View vv = inflater.inflate(R.layout.title, null);
-        home = (ListView) vv.findViewById(R.id.ListView_home);
+        home = (PullToRefreshListView) vv.findViewById(R.id.PullToRefreshListView);
         name = getArguments().getString("name");
         list = new ArrayList<>();
         listtitle = new ArrayList<>();
         dd = new DisplayImageOptions.Builder().build();
         initDate();
+        home.setMode(PullToRefreshBase.Mode.BOTH);
+        home.setOnRefreshListener(this);
 
 
         return vv;
@@ -58,7 +67,7 @@ public class Title extends Fragment {
 
     private void initView() {
 
-        BaseAdapter bb = new BaseAdapter() {
+        bb = new BaseAdapter() {
             final int item1 = 0;
             final int item2 = 1;
 
@@ -143,6 +152,15 @@ public class Title extends Fragment {
             }
         };
         home.setAdapter(bb);
+        home.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l)
+            {
+                Intent intent=new Intent(getActivity(), Main2Activity.class);
+                intent.putExtra("name",listtitle.get(i-1).getUri());
+                startActivity(intent);
+            }
+        });
 
     }
 
@@ -159,9 +177,11 @@ public class Title extends Fragment {
                         arr[i] = array.optString(i);
                         JSONObject jj = new JSONObject(arr[i]);
                         ImageTitleBean imageTitleBean = new ImageTitleBean();
-                        String title = jj.optString("digest");
+                        String title = jj.optString("title");
                         imageTitleBean.setTitle(title);
                         String source = jj.optString("source");
+                        String url = jj.optString("url");
+                        imageTitleBean.setUri(url);
                         imageTitleBean.setSource(source);
                         String imgsrc = jj.optString("imgsrc");
                         imageTitleBean.setImgsrc(imgsrc);
@@ -188,7 +208,7 @@ public class Title extends Fragment {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-
+              home.onRefreshComplete();
                 initView();
 
             }
@@ -208,6 +228,25 @@ public class Title extends Fragment {
 
             }
         });
+    }
+
+
+    public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView)
+    {
+        listtitle.clear();
+        age=0;
+        initDate();
+
+
+    }
+
+
+    public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView)
+    {
+        age+=10;
+        initDate();
+        bb.notifyDataSetChanged();
+
     }
 
     class ViewHodle {

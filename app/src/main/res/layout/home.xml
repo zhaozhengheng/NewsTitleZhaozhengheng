@@ -44,17 +44,29 @@
 
 
 
-
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
     <android.support.design.widget.TabLayout
         android:layout_width="match_parent"
         android:layout_height="46dp"
         android:id="@+id/TabLayout"
 
         app:tabSelectedTextColor="#ff00"
-
         >
-
     </android.support.design.widget.TabLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="+"
+        android:textColor="#ff00"
+        android:textSize="25dp"
+        android:id="@+id/TextView_homejia"
+       android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"/>
+</RelativeLayout>
+
     <android.support.v4.view.ViewPager
         android:layout_width="match_parent"
         android:layout_height="match_parent"

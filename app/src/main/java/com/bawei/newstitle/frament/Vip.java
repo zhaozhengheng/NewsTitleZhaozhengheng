@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.bawei.newstitle.R;
+import com.bawei.newstitle.bean.PublicClass;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +26,9 @@ public class Vip extends Fragment
     private TabLayout shipin_tt;
     private ViewPager shipin_viewpage;
    List<Fragment> list=new ArrayList<Fragment>();
-    String[] arr=new String[]{"生活","频道","花样","关注","风格","条目"};
+    String[] arr = new String[]{
+            "热点视频","娱乐视频","搞笑视频","精品视频"
+    };
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         vv = inflater.inflate(R.layout.vip,null);
@@ -69,6 +72,9 @@ public class Vip extends Fragment
         for(int i=0;i<arr.length;i++)
         {
             Shipin tt=new Shipin();
+            Bundle bb=new Bundle();
+            bb.putString("name", PublicClass.videoID[i]);
+            tt.setArguments(bb);
             list.add(tt);
 
         }

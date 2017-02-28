@@ -14,25 +14,45 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bawei.newstitle.R;
+import com.bawei.newstitle.Utils.utils;
 import com.bawei.newstitle.frament.Attention;
 import com.bawei.newstitle.frament.Home;
 import com.bawei.newstitle.frament.My;
 import com.bawei.newstitle.frament.Vip;
+import com.handmark.pulltorefresh.library.internal.Utils;
 
 import org.w3c.dom.Text;
 
-public class MainActivity extends FragmentActivity implements View.OnClickListener {private LinearLayout[] arr;
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {private LinearLayout[] arr;
     private TextView[] arr1;
     private ImageView[] arr2;
     int[] im=new int[]{R.mipmap.shou,R.mipmap.guanzhu,R.mipmap.vip,R.mipmap.wode};
     int[] im1=new int[]{R.mipmap.shou1,R.mipmap.guanzhu1,R.mipmap.vip1,R.mipmap.wode1};
+    private LinearLayout home;
+
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         control();
-        replace(new Home());
-        color(0);
+        if(utils.flas)
+        {
+            if(new My()!=null)
+            {
+                control();
+                replace(new My());
+                color(3);
+
+            }
+            control();
+            replace(new Home());
+            color(0);
+            utils.flas=false;
+        }
+
+
+
+
 
     }
     public void replace(Fragment ff)
@@ -68,7 +88,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     }
     public void control()
     {
-        LinearLayout home = (LinearLayout) findViewById(R.id.LinearLayout_home);
+        home = (LinearLayout) findViewById(R.id.LinearLayout_home);
         LinearLayout attenton = (LinearLayout) findViewById(R.id.LinearLayout_attention);
         LinearLayout vip = (LinearLayout) findViewById(R.id.LinearLayout_vip);
         LinearLayout my = (LinearLayout) findViewById(R.id.LinearLayout_my);

@@ -1,5 +1,6 @@
 package com.bawei.newstitle.frament;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,8 +12,10 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.bawei.newstitle.R;
+import com.bawei.newstitle.active.Pindaoguanli;
 import com.bawei.newstitle.bean.PublicClass;
 
 import java.util.ArrayList;
@@ -37,6 +40,16 @@ public class Home extends Fragment
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View vv=inflater.inflate(R.layout.home, null);
         TabLayout tt= (TabLayout) vv.findViewById(R.id.TabLayout);
+        TextView homejia = (TextView) vv.findViewById(R.id.TextView_homejia);
+        homejia.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                Intent intent=new Intent(getActivity(), Pindaoguanli.class);
+                startActivity(intent);
+
+            }
+        });
         ve = (ViewPager) vv.findViewById(R.id.ViewPager);
         initDate();
         apdater();
@@ -48,6 +61,7 @@ public class Home extends Fragment
 
 private void apdater()
 {
+    ve.setOffscreenPageLimit(3);
     ve.setAdapter(new FragmentPagerAdapter(getActivity().getSupportFragmentManager())
        {
         @Override

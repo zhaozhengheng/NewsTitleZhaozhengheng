@@ -24,21 +24,39 @@ import java.util.List;
 public class Attention extends Fragment implements View.OnClickListener
 {
 
-    private View vv;
+   // private View vv;
     private ViewPager viewPager;
     private List<Fragment> list;
     private TextView[] arr;
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        vv = inflater.inflate(R.layout.attention,null);
-        initView();
+        View   vv = inflater.inflate(R.layout.attention,null);
+        TextView guanzhu = (TextView) vv.findViewById(R.id.TextView_guanzhu);
+        guanzhu.setOnClickListener(this);
+        TextView tuijian = (TextView) vv.findViewById(R.id.TextView_tuijian);
+        tuijian.setOnClickListener(this);
+        TextView yanse1 = (TextView) vv.findViewById(R.id.TextView_yanse1);
+        TextView yanse2 = (TextView) vv.findViewById(R.id.TextView_yanse2);
+        arr = new TextView[]{yanse1,yanse2};
+        viewPager = (ViewPager) vv.findViewById(R.id.ViewPager_guanzhu);
+        view2();
+        return vv;
+    }
+
+    private void view2() {
+        list = new ArrayList<Fragment>();
+        list.add(new Recomment());
+        list.add(new Guanzhu());
+
+
         initDate();
         viewPager.setCurrentItem(0);
         zhuanhuan(0);
-
-
-        return vv;
     }
+
+
+
+
 
     private void zhuanhuan(int dext)
     {
@@ -55,7 +73,7 @@ public class Attention extends Fragment implements View.OnClickListener
 
     private void initDate()
 {
-    viewPager.setAdapter(new FragmentPagerAdapter(getActivity().getSupportFragmentManager()) {
+    viewPager.setAdapter(new FragmentPagerAdapter(getChildFragmentManager()) {
         @Override
         public Fragment getItem(int position) {
             return list.get(position);
@@ -96,21 +114,6 @@ public class Attention extends Fragment implements View.OnClickListener
 
 }
 
-
-    private void initView()
-    {
-        TextView guanzhu = (TextView) vv.findViewById(R.id.TextView_guanzhu);
-        guanzhu.setOnClickListener(this);
-        TextView tuijian = (TextView) vv.findViewById(R.id.TextView_tuijian);
-        tuijian.setOnClickListener(this);
-        TextView yanse1 = (TextView) vv.findViewById(R.id.TextView_yanse1);
-        TextView yanse2 = (TextView) vv.findViewById(R.id.TextView_yanse2);
-        arr = new TextView[]{yanse1,yanse2};
-        viewPager = (ViewPager) vv.findViewById(R.id.ViewPager_guanzhu);
-        list = new ArrayList<>();
-        list.add(new Recomment());
-        list.add(new Guanzhu());
-    }
 
     @Override
     public void onClick(View view)

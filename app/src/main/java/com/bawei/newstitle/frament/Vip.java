@@ -49,7 +49,7 @@ public class Vip extends Fragment
 
     private void initDate()
     {
-        shipin_viewpage.setAdapter(new FragmentPagerAdapter(getActivity().getSupportFragmentManager()) {
+        shipin_viewpage.setAdapter(new FragmentPagerAdapter(getChildFragmentManager()) {
             @Override
             public Fragment getItem(int position)
             {

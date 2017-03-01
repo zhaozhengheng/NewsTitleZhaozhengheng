@@ -40,12 +40,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             if(new My()!=null)
             {
                 control();
-                replace(new My());
+                replac(new My());
                 color(3);
 
             }
             control();
-            replace(new Home());
+            replac(new Home());
             color(0);
             utils.flas=false;
         }
@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     }
-    public void replace(Fragment ff)
+    public void replac(Fragment ff)
     {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
@@ -69,19 +69,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
    switch (view.getId())
    {
        case R.id.LinearLayout_home:
-           replace(new Home());
+           replac(new Home());
            color(0);
            break;
        case R.id.LinearLayout_attention:
-           replace(new Attention());
+           replac(new Attention());
            color(1);
            break;
        case R.id.LinearLayout_vip:
-           replace(new Vip());
+           replac(new Vip());
            color(2);
            break;
        case R.id.LinearLayout_my:
-           replace(new My());
+           replac(new My());
            color(3);
            break;
    }

@@ -62,7 +62,7 @@ public class Home extends Fragment
 private void apdater()
 {
     ve.setOffscreenPageLimit(3);
-    ve.setAdapter(new FragmentPagerAdapter(getActivity().getSupportFragmentManager())
+    ve.setAdapter(new FragmentPagerAdapter(getChildFragmentManager())
        {
         @Override
         public Fragment getItem(int position)

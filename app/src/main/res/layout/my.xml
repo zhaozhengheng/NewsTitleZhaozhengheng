@@ -24,11 +24,13 @@
            android:layout_width="60dp"
            android:layout_height="60dp"
            android:src="@mipmap/weibo"
+           android:id="@+id/ImageView_weibo"
            android:layout_marginLeft="20dp"/>
        <ImageView
            android:layout_width="60dp"
            android:layout_height="60dp"
            android:src="@mipmap/weixin"
+           android:id="@+id/ImageView_weixin"
            android:layout_marginLeft="20dp"
            />
 

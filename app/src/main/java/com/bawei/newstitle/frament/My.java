@@ -17,6 +17,10 @@ import android.widget.Toast;
 
 import com.bawei.newstitle.R;
 import com.bawei.newstitle.active.MainActivity;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.display.BitmapDisplayer;
+import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 import com.tencent.connect.UserInfo;
 import com.tencent.connect.auth.QQToken;
 import com.tencent.connect.common.Constants;
@@ -45,10 +49,14 @@ public class My extends Fragment
     private BaseUiListener mIUiListener;
     private UserInfo mUserInfo;
     private Context applicationContext;
+    private ImageView weixin;
+    private ImageView weibo;
+    private DisplayImageOptions dd;
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
     {
-
+        dd = new DisplayImageOptions.Builder()
+                .displayer(new RoundedBitmapDisplayer(180)).build();
         min = (MainActivity) getActivity();
         vv = inflater.inflate(R.layout.my,null);
         initview();
@@ -62,7 +70,8 @@ public class My extends Fragment
      {
          yejian.setOnClickListener(new View.OnClickListener() {
 
-             public void onClick(View view) {
+             public void onClick(View view)
+             {
                  int currentNightMode = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
                  min.getDelegate().setLocalNightMode(currentNightMode == Configuration.UI_MODE_NIGHT_NO
                          ? AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_NO);
@@ -82,7 +91,7 @@ public class My extends Fragment
  第三个参数，是一个事件监听器，IUiListener接口的实例，这里用的是该接口的实现类 */
                  mIUiListener = new BaseUiListener();
                  //all表示获取所有权限
-                 mTencent.login(getActivity(),"all", mIUiListener);
+                 mTencent.login(My.this,"all", mIUiListener);
              }
          });
 
@@ -94,6 +103,8 @@ public class My extends Fragment
     {
         yejian = (LinearLayout) vv.findViewById(R.id.LinearLayout_yejian);
         qq = (ImageView) vv.findViewById(R.id.ImageView_qq);
+        weixin = (ImageView) vv.findViewById(R.id.ImageView_weixin);
+        weibo = (ImageView) vv.findViewById(R.id.ImageView_weibo);
 
     }
 
@@ -124,6 +135,16 @@ public class My extends Fragment
                     @Override
                     public void onComplete(Object response) {
                         Log.e(TAG, "登录成功" + response.toString());
+                        JSONObject object=(JSONObject) response;
+                        String nickname = object.optString("nickname");
+                        String figureurl_qq_2 = object.optString("figureurl_qq_2");
+                        Log.e(TAG,nickname+"    "+figureurl_qq_2 );
+                        qq.setVisibility(View.GONE);
+                        weibo.setVisibility(View.GONE);
+                        //weixin.setVisibility(View.GONE);
+                        ImageLoader.getInstance().displayImage(figureurl_qq_2,weixin,dd);
+
+                        Log.d("zzz",nickname);
                     }
 
                     @Override

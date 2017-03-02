@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorAccent"
+    >
+   <ImageView
+       android:layout_width="100dp"
+       android:layout_height="100dp"
+       android:src="@mipmap/geren"
+       android:id="@+id/imageView" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="好友动态"
+
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/imageView"
+        android:layout_toEndOf="@+id/imageView"
+        android:layout_marginTop="38dp" />
+
+     <ImageView
+         android:layout_width="150dp"
+         android:layout_height="150dp"
+         android:src="@mipmap/jia"
+         android:layout_centerVertical="true"
+         android:layout_centerHorizontal="true"
+         android:id="@+id/imageView2" />
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="添加你的关注"
+    android:textSize="20dp"
+
+    android:layout_below="@+id/imageView2"
+    android:layout_centerHorizontal="true" />
+
+</RelativeLayout>
